@@ -1,0 +1,2 @@
+module Merja::Pathname
+end

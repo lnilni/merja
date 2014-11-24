@@ -1,4 +1,5 @@
 require "merja/engine"
+require "merja/pathname"
 
 module Merja
   class ForbiddenError < StandardError ; end
