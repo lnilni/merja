@@ -53,3 +53,25 @@ describe Merja do
     end
   end
 end
+
+describe Pathname do
+  DUMMY_PATH = "./spec/dummy_merja/public/"
+  describe "#to_merja" do
+    subject { Pathname.new(path).to_merja }
+
+    context "jsonファイルの場合" do
+      let(:path) { DUMMY_PATH + "json/test.json" }
+      it { should be_instance_of Merja::Pathname::Json }
+    end
+
+    context "非対応拡張子のファイルの場合" do
+      let(:path) { DUMMY_PATH + "hoge/hoge.hoge" }
+      it { should be_nil }
+    end
+
+    context "拡張子がないファイルの場合" do
+      let(:path) { DUMMY_PATH + "hoge/noext" }
+      it { should be_nil }
+    end
+  end
+end

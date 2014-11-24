@@ -30,3 +30,16 @@ module Merja
     end
   end
 end
+
+class Pathname
+  # TODO: 非対応拡張子でもとりあえず何か返せるように
+  def to_merja
+    return unless extname = self.extname.presence
+
+    klass = "Merja::Pathname::#{extname.classify}".constantize
+    klass.new(self)
+
+  rescue NameError
+    nil
+  end
+end
