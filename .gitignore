@@ -1,0 +1,8 @@
+.bundle/
+log/*.log
+pkg/
+spec/dummy_merja/db/*.sqlite3
+spec/dummy_merja/db/*.sqlite3-journal
+spec/dummy_merja/log/*.log
+spec/dummy_merja/tmp/
+spec/dummy_merja/.sass-cache
