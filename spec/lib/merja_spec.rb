@@ -5,7 +5,7 @@ require 'merja'
 describe Merja do
   before { allow(::Rails).to receive(:root).and_return(Pathname.new("./spec/dummy_merja/").expand_path) }
 
-  describe "#survey" do
+  describe ".survey" do
     subject { Merja.survey(path) }
 
     context "pathが存在するフォルダ名で、中のファイルが対応している拡張子の場合" do
@@ -34,12 +34,12 @@ describe Merja do
     end
   end
 
-  describe "#target_pathname" do
+  describe ".target_pathname" do
     subject { Merja.__send__(:target_pathname, "hoge") }
     it { should == Pathname.new("./spec/dummy_merja/public/hoge").expand_path }
   end
 
-  describe "#sanitize" do
+  describe ".sanitize" do
     subject { Merja.__send__(:sanitize, Pathname.new(path).expand_path) }
 
     context "pathがpublic配下の場合" do
