@@ -8,22 +8,27 @@ describe Merja do
   describe "#survey" do
     subject { Merja.survey(path) }
 
-    context "pathが存在するフォルダ名" do
-      let(:path) { "merja" }
-      it { should == [(::Rails.root + "public/merja/test.txt")] }
+    context "pathが存在するフォルダ名で、中のファイルが対応している拡張子の場合" do
+      let(:path) { "json" }
+      it { should == [{"teststr" => "test", "testnum" => 1}] }
     end
 
-    context "pathが存在しないフォルダ名" do
+    context "pathが存在するフォルダ名で、中のファイルが対応していない拡張子の場合" do
+      let(:path) { "hoge" }
+      it { should == [] }
+    end
+
+    context "pathが存在しないフォルダ名の場合" do
       let(:path) { "notfound" }
       it { expect { subject }.to raise_error Merja::NotFoundError }
     end
 
-    context "pathが存在するファイル名" do
+    context "pathが存在するファイル名の場合" do
       let(:path) { "merja/test.txt" }
       it { expect { subject }.to raise_error Merja::NotFoundError }
     end
 
-    context "pathが存在するフォルダ名だがpublic配下でない" do
+    context "pathが存在するフォルダ名だがpublic配下でない場合" do
       let(:path) { "../app" }
       it { expect { subject }.to raise_error Merja::ForbiddenError }
     end

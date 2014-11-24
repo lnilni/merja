@@ -11,7 +11,7 @@ module Merja
       target = sanitize(target)
 
       raise NotFoundError unless target.exist? && target.directory?
-      target.children
+      collect_children(target)
     end
 
   private
@@ -23,6 +23,14 @@ module Merja
       cleanpath = pathname.cleanpath
       raise ForbiddenError if cleanpath.to_s !~ %r(^#{accessible_dir.cleanpath.to_s})
       cleanpath
+    end
+
+    # 検索対象ディレクトリ内のファイルの中身をhash化して配列で返す
+    def collect_children(target)
+      target.children.map do |pathname|
+        next unless m = pathname.to_merja
+        m.to_hash
+      end.compact
     end
 
     def accessible_dir
