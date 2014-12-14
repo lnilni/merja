@@ -1,9 +1,15 @@
 module Merja::Pathname
   class Json < ::Pathname
     def to_hash
-      File.open(self.to_s) do |io|
-        JSON.load(io)
-      end
+      name = self.basename(".*").to_s
+      extname = self.extname.gsub(".","")
+      body = File.open(self.to_s) { |io| JSON.load(io) }
+
+      {
+        "name" => name,
+        "type" => extname,
+        "body" => body,
+      }
     end
   end
 end

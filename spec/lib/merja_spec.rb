@@ -10,7 +10,7 @@ describe Merja do
 
     context "pathが存在するフォルダ名で、中のファイルが対応している拡張子の場合" do
       let(:path) { "json" }
-      it { should == [{"teststr" => "test", "testnum" => 1}] }
+      it { should == [{"name"=>"test", "type"=>"json", "body"=>{"teststr"=>"test", "testnum"=>1}}] }
     end
 
     context "pathが存在するフォルダ名で、中のファイルが対応していない拡張子の場合" do
