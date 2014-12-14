@@ -7,7 +7,13 @@ describe Merja::Pathname do
     let(:file) { described_class.new("spec/dummy_merja/public/json/test.json") }
     describe "#to_hash" do
       subject { file.to_hash }
-      it { should == {"teststr" => "test", "testnum" => 1} }
+      it do
+        should == {
+          "name" => "test",
+          "type" => "json",
+          "body" => {"teststr" => "test", "testnum" => 1}
+        }
+      end
     end
   end
 end

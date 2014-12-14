@@ -23,8 +23,8 @@ module Merja
         it do
           expect(JSON.parse(response.body)).to eq({
             "items" => [
-              {"teststr" => "test","testnum" => 1},
-              {"teststr" => "hoge","testnum" => 2}
+              {"name"=>"test", "type"=>"json", "body"=>{"teststr"=>"test", "testnum"=>1}},
+              {"name"=>"test2", "type"=>"json", "body"=>{"teststr"=>"hoge", "testnum"=>2}}
             ]
           })
         end
