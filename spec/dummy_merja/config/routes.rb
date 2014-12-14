@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
 
-  mount Merja::Engine => "/merja"
+  mount Merja::Engine => "/"
 end
